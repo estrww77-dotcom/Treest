@@ -1,0 +1,24 @@
+name: Build & Release RedSea.exe
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+      - name: Restore
+        working-directory: desktop
+        run: dotnet restore OpenSteam.sln
+      - name: Publish
+        working-directory: desktop
+        run: dotnet publish OpenSteam.sln -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "RedSea ${{ github.ref_name }}"
+          files: desktop/bin/Release/net9.0-windows/win-x64/publish/RedSea.exe
