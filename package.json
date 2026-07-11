@@ -1,0 +1,17 @@
+{
+  "name": "redsea",
+  "version": "1.0.0",
+  "description": "**OpenSteam** is an open-source and secure alternative inspired by tools like SteamTools. It focuses on safety, transparency, and performance, offering a fast and efficient user experience.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-fetch": "^3.3.2"
+  }
+}

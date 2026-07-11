@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "RedSea": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "InitialMessage": "True"
+      }
+    }
+  }
+}
