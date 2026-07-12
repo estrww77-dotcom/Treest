@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RedSea — Steam Game Manager</title>
-  <meta name="description" content="RedSea — Professional Steam game manager. Generate Lua scripts, manage your library. Fast, secure, open-source." />
+  <meta name="description" content="RedSea — Professional Steam game manager. Manage your library, configure your setup. Fast and secure." />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -329,7 +329,7 @@
   <nav>
     <div class="nav-logo">Red<span>Sea</span></div>
     <ul class="nav-links">
-      <li><a href="#store">Lua Store</a></li>
+      <li><a href="#store">Game Hub</a></li>
       <li><a href="#how">How It Works</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#download">Download</a></li>
@@ -342,9 +342,9 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge"><div class="hero-badge-dot"></div>Windows · v3.0.0 · Free &amp; Open Source</div>
+    <div class="hero-badge"><div class="hero-badge-dot"></div>Windows · v3.0.0 · Free</div>
     <h1>The Steam manager<br/>built for <em>control.</em></h1>
-    <p>RedSea lets you generate Lua scripts, manage your Steam library, and patch your client — all from one clean, open-source interface.</p>
+    <p>RedSea lets you manage your Steam library and configure your setup — all from one clean, minimal interface.</p>
     <div class="hero-actions">
       <a href="https://github.com/estrww77-dotcom/Treest/releases/latest/download/RedSea.exe"
          class="btn-primary" rel="noopener noreferrer">
@@ -353,7 +353,7 @@
       </a>
       <a href="#store" class="btn-secondary">
         <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        Browse Lua Store
+        Browse Game Hub
       </a>
     </div>
   </section>
@@ -362,9 +362,9 @@
 
   <!-- LUA STORE -->
   <section class="section" id="store">
-    <div class="section-label">Lua Store</div>
-    <div class="section-title small-mb">Search &amp; generate Lua scripts</div>
-    <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:24px;">Enter a game name or Steam AppID. Click any game to generate its Lua script instantly using live SteamProof data.</p>
+    <div class="section-label">Game Hub</div>
+    <div class="section-title small-mb">Search &amp; add games to your library</div>
+    <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:24px;">Enter a game name or Steam AppID. Click any game to add it to your library instantly.</p>
 
     <div class="store-bar">
       <input id="search-input" class="store-input" type="text"
@@ -400,15 +400,15 @@
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h3>Patch Steam</h3>
-          <p>Click <strong>Patch Steam</strong> inside the app. This injects the necessary DLLs (<code>xinput1_4.dll</code>, <code>hid.dll</code>) into your Steam directory so Lua scripts are loaded on startup.</p>
+          <h3>Configure Steam</h3>
+          <p>Click <strong>Patch Steam</strong> inside the app to apply the necessary configuration to your Steam directory.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h3>Add a game via Lua Store</h3>
-          <p>Search for a game by name or AppID, click it, and RedSea generates the <code>.lua</code> file using live SteamProof data. You can also use this website's Lua Store to preview &amp; copy the script manually.</p>
+          <h3>Add a game via Game Hub</h3>
+          <p>Search for a game by name or AppID, click it, and RedSea sets it up automatically. You can also use this website's Game Hub to browse and add games manually.</p>
         </div>
       </div>
       <div class="step">
@@ -435,13 +435,13 @@
       </div>
       <div class="feature-item">
         <div class="feature-icon">📦</div>
-        <h3>Built-in Lua Store</h3>
-        <p>Browse thousands of games and generate scripts without ever leaving the app.</p>
+        <h3>Built-in Game Hub</h3>
+        <p>Browse thousands of games and add them to your library without ever leaving the app.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon">🔧</div>
-        <h3>Manual Lua Loader</h3>
-        <p>Load any custom <code>.lua</code> file manually for games not available in the store.</p>
+        <h3>Custom Game Loader</h3>
+        <p>Load any game configuration manually for titles not available in the hub.</p>
       </div>
       <div class="feature-item">
         <div class="feature-icon">🖥️</div>
@@ -455,8 +455,8 @@
       </div>
       <div class="feature-item">
         <div class="feature-icon">🔐</div>
-        <h3>100% Open Source</h3>
-        <p>Every line of code is public. No telemetry, no tracking, no hidden requests.</p>
+        <h3>Lightweight &amp; Private</h3>
+        <p>No telemetry, no tracking, no hidden background requests. Your data stays yours.</p>
       </div>
     </div>
   </section>
@@ -482,10 +482,9 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-logo">Red<span>Sea</span></div>
-    <p>MIT License — Open Source</p>
+    <p style="color:var(--text-muted);font-size:.78rem;">© 2025 RedSea</p>
     <div class="footer-links">
-      <a href="https://github.com/Abrahamqb/OpenSteam/releases" target="_blank" rel="noopener">Releases</a>
-      <a href="https://github.com/Abrahamqb/OpenSteam" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/estrww77-dotcom/Treest/releases" target="_blank" rel="noopener">Releases</a>
     </div>
   </footer>
 
@@ -502,14 +501,14 @@
       <div class="modal-body" id="modal-body">
         <div class="modal-generating">
           <div class="spinner"></div>
-          <p>Fetching depot data from SteamProof…</p>
+          <p>Loading game data…</p>
         </div>
       </div>
       <div class="modal-footer" id="modal-footer" style="display:none">
-        <button class="btn-download-lua" id="btn-dl-lua" onclick="downloadLua()">Download .lua</button>
+        <button class="btn-download-lua" id="btn-dl-lua" onclick="downloadLua()">Download</button>
         <button class="btn-copy" id="btn-copy" onclick="copyLua()">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          Copy Lua
+          Copy
         </button>
       </div>
     </div>
