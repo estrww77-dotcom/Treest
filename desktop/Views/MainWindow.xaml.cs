@@ -148,14 +148,6 @@ namespace OpenSteam.Views
             DynamicContent.Content = null;
         }
 
-        private void NavInfo_Click(object sender, RoutedEventArgs e)
-        {
-            HomeGrid.Visibility = Visibility.Collapsed;
-            SettingsGrid.Visibility = Visibility.Collapsed;
-            DynamicContent.Visibility = Visibility.Visible;
-            DynamicContent.Content = new Information();
-        }
-
         // Home Handlers
         private async void patchButton_Click(object sender, RoutedEventArgs e)
         {

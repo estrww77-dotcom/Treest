@@ -161,7 +161,6 @@
                             <RadioButton Content="Network"                  Style="{StaticResource MenuRadioButton}" GroupName="Menu" Click="NavByPass_Click"/>
                             <RadioButton Content="Tools"                    Style="{StaticResource MenuRadioButton}" GroupName="Menu" Click="NavExtra_Click"/>
                             <RadioButton Content="Settings"                 Style="{StaticResource MenuRadioButton}" GroupName="Menu" Click="NavSettings_Click"/>
-                            <RadioButton Content="About"                    Style="{StaticResource MenuRadioButton}" GroupName="Menu" Click="NavInfo_Click"/>
                         </StackPanel>
 
                         <!-- Version -->
