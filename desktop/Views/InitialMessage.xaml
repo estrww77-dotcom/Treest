@@ -1,61 +1,83 @@
-﻿<UserControl x:Class="OpenSteam.Views.InitialMessage"
+<UserControl x:Class="OpenSteam.Views.InitialMessage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600"
              TextOptions.TextFormattingMode="Display"
              TextOptions.TextRenderingMode="ClearType"
              UseLayoutRounding="True">
     <Grid>
-        <Canvas IsHitTestVisible="False"/>
-        <StackPanel Margin="30">
-            <TextBlock Text="RedSea Framework" Foreground="White" FontSize="28" FontWeight="ExtraBold" Margin="0,0,0,5">
-                <TextBlock.Effect>
-                    <DropShadowEffect BlurRadius="8" Color="#E01E37" ShadowDepth="0" Opacity="0.4"/>
-                </TextBlock.Effect>
-            </TextBlock>
-            <TextBlock x:Name="InfoVersion" Text="Version 2.1 Beta" Foreground="#66FFFFFF" FontSize="12" Margin="0,0,0,25"/>
-            <StackPanel>
-                <TextBlock TextWrapping="Wrap" Foreground="#CCCCCC" FontSize="24" LineHeight="22" Margin="0,0,0,20" Text="Welcome to RedSea"/>
-                <Border Background="#15FFFFFF" CornerRadius="10" Padding="15" BorderThickness="1" BorderBrush="#1AFFFFFF">
-                    <StackPanel>
-                        <TextBlock Foreground="#E01E37" FontWeight="Bold" FontSize="20" Margin="0,0,0,5" Text="important :D"/>
-                        <TextBlock TextWrapping="Wrap" Foreground="#AAAAAA" FontSize="12" Text="This is a third-party program that modifies the Steam platform in various ways. For your security, it is recommended that you back up your Steam folder. To do this, go to Settings > Create a Backup."/>
-                        <TextBlock TextWrapping="Wrap" Foreground="#AAAAAA" FontSize="12" Text="Thanks for using it, and we'll be adding new features soon. Good luck on your pirate adventure! 🏴‍☠️"/>
-                        <TextBlock TextWrapping="Wrap" Foreground="Red" FontSize="20" Text="VERY IMPORTANT. If any patch doesn't work, try switching between &quot;Default&quot; and &quot;Alternative&quot;."/>
-                    </StackPanel>
-                </Border>
+        <StackPanel VerticalAlignment="Center" Margin="40,20">
+
+            <!-- Logo mark -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,6">
+                <Border Width="10" Height="10" Background="#E01E37" CornerRadius="3" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                <TextBlock VerticalAlignment="Center">
+                    <Run Text="Red" Foreground="White" FontSize="24" FontWeight="ExtraBold"/>
+                    <Run Text="Sea" Foreground="#E01E37" FontSize="24" FontWeight="ExtraBold"/>
+                </TextBlock>
             </StackPanel>
-            <Button x:Name="BtnDontShow" 
-        Content="Don't show again" 
-        Width="220" 
-        Height="42" 
-        Margin="0,25,0,0" 
-        HorizontalAlignment="Center"
-        Cursor="Hand" Click="BtnDontShow_Click">
+
+            <TextBlock x:Name="InfoVersion" Text="v3.0.0"
+                       Foreground="#222222" FontSize="11" FontWeight="SemiBold"
+                       HorizontalAlignment="Center" Margin="0,0,0,28"/>
+
+            <TextBlock Text="Welcome" Foreground="White" FontSize="20" FontWeight="Bold"
+                       HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+            <!-- Warning card -->
+            <Border Background="#0A0A0A" CornerRadius="12" Padding="20,16"
+                    BorderThickness="1" BorderBrush="#1A1A1A" Margin="0,0,0,12">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Border Background="#1A0808" CornerRadius="4" Padding="6,3" Margin="0,0,8,0">
+                            <TextBlock Text="IMPORTANT" Foreground="#E01E37" FontSize="9" FontWeight="Bold"/>
+                        </Border>
+                        <TextBlock Text="Read before continuing" Foreground="#444444" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Foreground="#555555" FontSize="12" LineHeight="20"
+                               Text="This is a third-party program that modifies Steam. It is strongly recommended that you back up your Steam folder first. Go to Settings → Create a Backup."/>
+                </StackPanel>
+            </Border>
+
+            <!-- Tip card -->
+            <Border Background="#0A0A0A" CornerRadius="12" Padding="20,16"
+                    BorderThickness="1" BorderBrush="#1A1A1A" Margin="0,0,0,24">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                        <Border Background="#0A0F1A" CornerRadius="4" Padding="6,3" Margin="0,0,8,0">
+                            <TextBlock Text="TIP" Foreground="#3B82F6" FontSize="9" FontWeight="Bold"/>
+                        </Border>
+                        <TextBlock Text="Patch not working?" Foreground="#444444" FontSize="12" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock TextWrapping="Wrap" Foreground="#555555" FontSize="12" LineHeight="20"
+                               Text="If a patch doesn't work, try switching between &quot;Default&quot; and &quot;Alternative&quot; mode on the Dashboard."/>
+                </StackPanel>
+            </Border>
+
+            <!-- Action -->
+            <Button x:Name="BtnDontShow" Content="Don't show again"
+                    Width="200" Height="40" HorizontalAlignment="Center"
+                    Cursor="Hand" Click="BtnDontShow_Click">
                 <Button.Style>
                     <Style TargetType="Button">
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Foreground" Value="#666666"/>
+                        <Setter Property="FontSize" Value="13"/>
                         <Setter Property="FontWeight" Value="SemiBold"/>
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Border x:Name="border" CornerRadius="10" BorderThickness="1" BorderBrush="#33FFFFFF">
-                                        <Border.Background>
-                                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
-                                                <GradientStop Color="#252525" Offset="0"/>
-                                                <GradientStop Color="#1A1A1A" Offset="1"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
+                                    <Border x:Name="border" CornerRadius="8"
+                                            BorderThickness="1" BorderBrush="#141414"
+                                            Background="#0A0A0A">
                                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#333333"/>
-                                            <Setter TargetName="border" Property="BorderBrush" Value="#E01E37"/>
+                                            <Setter TargetName="border" Property="BorderBrush" Value="#2A2A2A"/>
+                                            <Setter Property="Foreground" Value="White"/>
                                         </Trigger>
                                         <Trigger Property="IsPressed" Value="True">
                                             <Setter TargetName="border" Property="RenderTransform">
@@ -71,6 +93,7 @@
                     </Style>
                 </Button.Style>
             </Button>
+
         </StackPanel>
     </Grid>
 </UserControl>
