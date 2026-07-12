@@ -135,7 +135,11 @@ public class Attach
                 case 1:
                     try
                     {
-                        byte[] fileData = await _httpClient.GetByteArrayAsync("https://github.com/Abrahamqb/OpenSteamMore-Dev/releases/latest/download/inject.zip");
+                        string apiUrl1 = "https://api.github.com/repos/OpenSteam001/OpenSteamTool/releases/latest";
+                        string jsonResponse1 = await _httpClient.GetStringAsync(apiUrl1);
+                        string downloadUrl1 = GetReleaseDownloadUrl(jsonResponse1);
+                        if (string.IsNullOrEmpty(downloadUrl1)) { Console.WriteLine("Error: Could not find inject.zip link."); return; }
+                        byte[] fileData = await _httpClient.GetByteArrayAsync(downloadUrl1);
                         await File.WriteAllBytesAsync(zipPath, fileData);
 
                         ZipFile.ExtractToDirectory(zipPath, path, true);

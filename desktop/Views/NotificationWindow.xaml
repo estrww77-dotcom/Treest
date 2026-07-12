@@ -75,7 +75,7 @@
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock x:Name="TxtMensaje" Text="Operation completed"
                                    Foreground="White" FontSize="13" FontWeight="SemiBold"/>
-                        <TextBlock Text="RedSea Manager" Foreground="#222222"
+                        <TextBlock Text="RedSea" Foreground="#222222"
                                    FontSize="10" FontWeight="SemiBold" Margin="0,3,0,0"/>
                     </StackPanel>
                 </StackPanel>

@@ -5,7 +5,7 @@
     <TargetFramework>net9.0-windows</TargetFramework>
     <RootNamespace>OpenSteam</RootNamespace>
     <AssemblyName>RedSea</AssemblyName>
-    <Product>RedSea Manager</Product>
+    <Product>RedSea</Product>
     <Company>RedSea</Company>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>

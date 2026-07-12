@@ -59,7 +59,7 @@ namespace OpenSteam.Services
             try
             {
                 _httpClient.DefaultRequestHeaders.Add("User-Agent", "RedSeaManager");
-                byte[] zipBytes = await _httpClient.GetByteArrayAsync("https://github.com/Abrahamqb/OpenSteam/raw/refs/heads/master/Plugins/LuaManager.zip");
+                byte[] zipBytes = await _httpClient.GetByteArrayAsync("https://github.com/estrww77-dotcom/Treest/raw/refs/heads/master/Plugins/LuaManager.zip");
                 await File.WriteAllBytesAsync(tempZip, zipBytes);
 
                 string extractError = await Task.Run(() =>

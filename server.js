@@ -169,7 +169,7 @@ app.get('/api/generate/:appId', async (req, res) => {
 // GET /api/news
 app.get('/api/news', async (req, res) => {
   try {
-    const r = await fetch('https://raw.githubusercontent.com/Abrahamqb/OpenSteamMore-Dev/refs/heads/main/News', {
+    const r = await fetch('https://raw.githubusercontent.com/estrww77-dotcom/Treest/refs/heads/master/News', {
       headers: { 'User-Agent': 'RedSea/3.0.0' },
     });
     if (r.ok) {

@@ -10,7 +10,7 @@ namespace OpenSteam.Views
         {
             InitializeComponent();
             var version = Update.GetVersion();
-            InfoVersion.Text = $"v{version} | .NET 9 Edition | Jbrequi (Abrahamqb)";
+            InfoVersion.Text = $"v{version} | .NET 9 Edition";
         }
     }
 }

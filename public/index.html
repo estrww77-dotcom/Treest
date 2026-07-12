@@ -108,7 +108,7 @@
     }
     .section-title.small-mb { margin-bottom: 18px; }
 
-    /* ─── LUA STORE ─── */
+    /* ─── GAME HUB ─── */
     .store-bar {
       display: flex; gap: 10px; margin-bottom: 28px; align-items: center;
     }
@@ -360,7 +360,7 @@
 
   <hr class="section-divider" />
 
-  <!-- LUA STORE -->
+  <!-- GAME HUB -->
   <section class="section" id="store">
     <div class="section-label">Game Hub</div>
     <div class="section-title small-mb">Search &amp; add games to your library</div>
@@ -483,9 +483,7 @@
   <footer>
     <div class="footer-logo">Red<span>Sea</span></div>
     <p style="color:var(--text-muted);font-size:.78rem;">© 2025 RedSea</p>
-    <div class="footer-links">
-      <a href="https://github.com/estrww77-dotcom/Treest/releases" target="_blank" rel="noopener">Releases</a>
-    </div>
+    <div class="footer-links"></div>
   </footer>
 
   <!-- LUA MODAL -->
@@ -603,7 +601,7 @@
     document.getElementById('modal-game-name').textContent = name;
     document.getElementById('modal-game-id').textContent = 'AppID: ' + appId;
     document.getElementById('modal-body').innerHTML =
-      '<div class="modal-generating"><div class="spinner"></div><p>Fetching depot data from SteamProof…</p></div>';
+      '<div class="modal-generating"><div class="spinner"></div><p>Loading game data…</p></div>';
     document.getElementById('modal-footer').style.display = 'none';
     document.getElementById('lua-modal').classList.add('open');
     generateLua(appId, name);

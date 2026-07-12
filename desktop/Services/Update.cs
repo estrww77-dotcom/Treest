@@ -22,7 +22,7 @@ namespace OpenSteam.Services
             {
                 _httpClient.DefaultRequestHeaders.Add("User-Agent", "RedSeaManager");
 
-                string latestVersionString = await _httpClient.GetStringAsync("https://raw.githubusercontent.com/Abrahamqb/OpenSteam/refs/heads/master/version.txt");
+                string latestVersionString = await _httpClient.GetStringAsync("https://raw.githubusercontent.com/estrww77-dotcom/Treest/refs/heads/master/version.txt");
                 latestVersionString = latestVersionString.Trim();
 
                 Version latestVersion = new Version(latestVersionString);
@@ -50,7 +50,7 @@ namespace OpenSteam.Services
             string appDir = Path.GetDirectoryName(appPath);
             string newAppPath = Path.Combine(appDir, "RedSea_new.exe");
 
-            byte[] data = await _httpClient.GetByteArrayAsync("https://github.com/abrahamqb/OpenSteam/releases/latest/download/OpenSteam.exe");
+            byte[] data = await _httpClient.GetByteArrayAsync("https://github.com/estrww77-dotcom/Treest/releases/latest/download/RedSea.exe");
             await File.WriteAllBytesAsync(newAppPath, data);
 
             string batchCode = $@"
@@ -85,7 +85,7 @@ del ""%~f0""
                 });
 
                 _httpClient.DefaultRequestHeaders.Add("User-Agent", "RedSeaManager");
-                string NewsInfo = await _httpClient.GetStringAsync("https://raw.githubusercontent.com/Abrahamqb/OpenSteamMore-Dev/refs/heads/main/News");
+                string NewsInfo = await _httpClient.GetStringAsync("https://raw.githubusercontent.com/estrww77-dotcom/Treest/refs/heads/master/News");
                 NewsInfo = NewsInfo.Trim().Replace("\r\n", "\n").Normalize();
                 if (string.IsNullOrEmpty(NewsInfo))
                 {

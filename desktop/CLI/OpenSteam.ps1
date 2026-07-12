@@ -20,8 +20,7 @@ $asciiArt = @'
  |  _ <  __/ (_| |___) |  __/ (_| |
  |_| \_\___|\_,_|____/ \___|\_,_|
 
-    RedSea Manager v3.0.0
-    Github: Abrahamqb
+    RedSea v3.0.0
 '@
 
 Clear-Host
@@ -61,8 +60,9 @@ function PatchSteam {
 
     try {
         $headers = @{ "User-Agent" = "RedSeaManager" }
-        Invoke-WebRequest -Uri "https://github.com/Abrahamqb/OpenSteamMore-Dev/releases/latest/download/inject.zip" `
-            -OutFile $zipPath -Headers $headers -ErrorAction Stop
+        $apiJson = (Invoke-WebRequest -Uri "https://api.github.com/repos/OpenSteam001/OpenSteamTool/releases/latest" -Headers $headers).Content | ConvertFrom-Json
+        $injectUrl = ($apiJson.assets | Where-Object { $_.name -like "*-Release.zip" } | Select-Object -First 1).browser_download_url
+        Invoke-WebRequest -Uri $injectUrl -OutFile $zipPath -Headers $headers -ErrorAction Stop
 
         Write-Host " Extracting files to Steam folder..." -ForegroundColor Gray
         Expand-Archive -Path $zipPath -DestinationPath $steamPath -Force
@@ -285,7 +285,7 @@ function DownloadLuaManager {
     write-Host " --- Download LuaManager (Plugin) --- " -ForegroundColor Cyan
     if (-not (Test-Path "$steamPath\plugins")) { New-Item -ItemType Directory -Path "$steamPath\plugins" | Out-Null }
     Write-Host "Downloading LuaManager..." -ForegroundColor Gray
-    Invoke-WebRequest -Uri "https://github.com/Abrahamqb/OpenSteam/raw/refs/heads/master/Plugins/LuaManager.zip" -OutFile "$tempFolder\LuaManager.zip"
+    Invoke-WebRequest -Uri "https://github.com/estrww77-dotcom/Treest/raw/refs/heads/master/Plugins/LuaManager.zip" -OutFile "$tempFolder\LuaManager.zip"
     Write-Host "Extracting to plugins folder..." -ForegroundColor Green
     Expand-Archive -Path "$tempFolder\LuaManager.zip" -DestinationPath "$steamPath\plugins\" -Force
     Write-Host "Done! Remember to activate it in Millennium settings." -ForegroundColor Yellow
@@ -297,7 +297,7 @@ function InstallRedSeaDesktop {
     Clear-Host
     Write-Host " --- Install RedSea.exe to Desktop --- " -ForegroundColor Cyan
     Write-Host "Downloading RedSea to desktop..." -ForegroundColor Blue
-    Invoke-WebRequest -Uri "https://github.com/Abrahamqb/OpenSteam/releases/latest/download/RedSea.exe" -OutFile "$desktopPath\RedSea.exe"
+    Invoke-WebRequest -Uri "https://github.com/estrww77-dotcom/Treest/releases/latest/download/RedSea.exe" -OutFile "$desktopPath\RedSea.exe"
     Write-Host "Executable created successfully!" -ForegroundColor Green
     Write-Host "Press any key to continue..." -ForegroundColor Gray
     $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')

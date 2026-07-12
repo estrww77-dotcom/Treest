@@ -1,7 +1,7 @@
 {
   "name": "redsea",
   "version": "1.0.0",
-  "description": "**OpenSteam** is an open-source and secure alternative inspired by tools like SteamTools. It focuses on safety, transparency, and performance, offering a fast and efficient user experience.",
+  "description": "RedSea — Steam game manager website and API.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
