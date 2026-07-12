@@ -152,7 +152,7 @@
                                 </TextBlock>
                             </StackPanel>
                             <TextBlock Text="Manager" Foreground="#333333" FontSize="10" FontWeight="SemiBold"
-                                       Margin="16,2,0,0" LetterSpacing="1"/>
+                                       Margin="16,2,0,0"/>
                         </StackPanel>
 
                         <!-- Nav Items -->
@@ -326,7 +326,7 @@
                                 </StackPanel>
 
                                 <TextBlock Text="GENERAL" Foreground="#333333" FontSize="10"
-                                           FontWeight="Bold" Margin="0,0,0,10" LetterSpacing="2"/>
+                                           FontWeight="Bold" Margin="0,0,0,10"/>
 
                                 <Border Style="{StaticResource SettingCardStyle}">
                                     <Grid>
@@ -399,7 +399,7 @@
                                 </Border>
 
                                 <TextBlock Text="STEAM" Foreground="#333333" FontSize="10"
-                                           FontWeight="Bold" Margin="0,20,0,10" LetterSpacing="2"/>
+                                           FontWeight="Bold" Margin="0,20,0,10"/>
 
                                 <Border Style="{StaticResource SettingCardStyle}">
                                     <Grid>
@@ -416,7 +416,7 @@
                                 </Border>
 
                                 <TextBlock Text="MAINTENANCE" Foreground="#333333" FontSize="10"
-                                           FontWeight="Bold" Margin="0,20,0,10" LetterSpacing="2"/>
+                                           FontWeight="Bold" Margin="0,20,0,10"/>
 
                                 <UniformGrid Columns="2" Margin="0,0,0,8">
                                     <Button Content="Backup Steam" Style="{StaticResource PrimaryAction}" Height="40" Margin="0,0,4,4" FontSize="12" Click="SteamBackup_Click" Background="#1A5218" BorderBrush="#1A5218"/>
