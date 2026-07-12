@@ -18,8 +18,8 @@
 
         <!-- Header -->
         <StackPanel Grid.Row="0" Margin="0,0,0,16">
-            <TextBlock Text="Online Fix" Foreground="White" FontSize="22" FontWeight="Bold"/>
-            <TextBlock Text="Select a game to search on Online-Fix"
+            <TextBlock Text="Network" Foreground="White" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Text="Select a game to enable multiplayer support"
                        Foreground="#333333" FontSize="12" Margin="0,4,0,0"/>
         </StackPanel>
 
@@ -78,7 +78,7 @@
 
         <!-- Action -->
         <Button x:Name="BtnSearchOnlineFix" Grid.Row="2"
-                Content="Search on Online-Fix" Height="44" Margin="0,12,0,0"
+                Content="Enable Multiplayer" Height="44" Margin="0,12,0,0"
                 Cursor="Hand" Foreground="White" FontSize="13" FontWeight="SemiBold"
                 Click="BtnSearchOnlineFix_Click">
             <Button.Template>

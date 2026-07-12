@@ -11,7 +11,6 @@
     <Grid>
         <StackPanel VerticalAlignment="Center" Margin="40,20">
 
-            <!-- Logo mark -->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,6">
                 <Border Width="10" Height="10" Background="#E01E37" CornerRadius="3" Margin="0,0,8,0" VerticalAlignment="Center"/>
                 <TextBlock VerticalAlignment="Center">
@@ -27,22 +26,20 @@
             <TextBlock Text="Welcome" Foreground="White" FontSize="20" FontWeight="Bold"
                        HorizontalAlignment="Center" Margin="0,0,0,20"/>
 
-            <!-- Warning card -->
             <Border Background="#0A0A0A" CornerRadius="12" Padding="20,16"
                     BorderThickness="1" BorderBrush="#1A1A1A" Margin="0,0,0,12">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                         <Border Background="#1A0808" CornerRadius="4" Padding="6,3" Margin="0,0,8,0">
-                            <TextBlock Text="IMPORTANT" Foreground="#E01E37" FontSize="9" FontWeight="Bold"/>
+                            <TextBlock Text="NOTE" Foreground="#E01E37" FontSize="9" FontWeight="Bold"/>
                         </Border>
                         <TextBlock Text="Read before continuing" Foreground="#444444" FontSize="12" VerticalAlignment="Center"/>
                     </StackPanel>
                     <TextBlock TextWrapping="Wrap" Foreground="#555555" FontSize="12" LineHeight="20"
-                               Text="This is a third-party program that modifies Steam. It is strongly recommended that you back up your Steam folder first. Go to Settings → Create a Backup."/>
+                               Text="It is recommended that you back up your Steam folder before making any changes. You can do this from Settings."/>
                 </StackPanel>
             </Border>
 
-            <!-- Tip card -->
             <Border Background="#0A0A0A" CornerRadius="12" Padding="20,16"
                     BorderThickness="1" BorderBrush="#1A1A1A" Margin="0,0,0,24">
                 <StackPanel>
@@ -50,14 +47,13 @@
                         <Border Background="#0A0F1A" CornerRadius="4" Padding="6,3" Margin="0,0,8,0">
                             <TextBlock Text="TIP" Foreground="#3B82F6" FontSize="9" FontWeight="Bold"/>
                         </Border>
-                        <TextBlock Text="Patch not working?" Foreground="#444444" FontSize="12" VerticalAlignment="Center"/>
+                        <TextBlock Text="Not working?" Foreground="#444444" FontSize="12" VerticalAlignment="Center"/>
                     </StackPanel>
                     <TextBlock TextWrapping="Wrap" Foreground="#555555" FontSize="12" LineHeight="20"
-                               Text="If a patch doesn't work, try switching between &quot;Default&quot; and &quot;Alternative&quot; mode on the Dashboard."/>
+                               Text="If something isn't working, try switching between &quot;Default&quot; and &quot;Alternative&quot; mode on the Dashboard."/>
                 </StackPanel>
             </Border>
 
-            <!-- Action -->
             <Button x:Name="BtnDontShow" Content="Don't show again"
                     Width="200" Height="40" HorizontalAlignment="Center"
                     Cursor="Hand" Click="BtnDontShow_Click">

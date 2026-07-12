@@ -14,9 +14,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
-            <TextBlock Text="Information" Foreground="White" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Text="About" Foreground="White" FontSize="22" FontWeight="Bold"/>
             <TextBlock x:Name="InfoVersion" Text="Version 3.0.0"
                        Foreground="#333333" FontSize="12" Margin="0,4,0,0"/>
         </StackPanel>
@@ -26,30 +25,14 @@
 
                 <TextBlock TextWrapping="Wrap" Foreground="#555555" FontSize="12"
                            LineHeight="20" Margin="0,0,0,20"
-                           Text="RedSea is an open-source patching layer for Steam that enables advanced game compatibility and Lua-based library management."/>
-
-                <!-- Dev -->
-                <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
-                        Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414">
-                    <StackPanel>
-                        <TextBlock Text="Developer" Foreground="#E01E37" FontWeight="SemiBold" FontSize="11"
-                                   Margin="0,0,0,6"/>
-                        <TextBlock TextWrapping="Wrap" Foreground="#555555" FontSize="12"
-                                   Text="Open source — created by Abrahamqb (Jbrequi)."/>
-                        <TextBlock TextWrapping="Wrap" Foreground="#333333" FontSize="12"
-                                   Text="github.com/Abrahamqb/OpenSteam" Margin="0,3,0,0"/>
-                    </StackPanel>
-                </Border>
-
-                <TextBlock Text="CORE FEATURES" Foreground="#222222" FontSize="10"
-                           FontWeight="Bold" Margin="0,20,0,12"/>
+                           Text="RedSea Manager is a Steam companion application designed to improve your gaming experience."/>
 
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414">
                     <StackPanel>
-                        <TextBlock Text="Library Jailbreak" Foreground="White" FontWeight="SemiBold"
+                        <TextBlock Text="Game Management" Foreground="White" FontWeight="SemiBold"
                                    FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Unlocks the Steam library, allowing you to play games natively including titles loaded via Lua."
+                        <TextBlock Text="Organize and manage your Steam game library from one clean interface."
                                    TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                     </StackPanel>
                 </Border>
@@ -57,9 +40,9 @@
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414">
                     <StackPanel>
-                        <TextBlock Text="LuaLoader" Foreground="White" FontWeight="SemiBold"
+                        <TextBlock Text="Game Hub" Foreground="White" FontWeight="SemiBold"
                                    FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Loads Lua files from external servers to access non-DRM titles. Note: Online play requires an Online Fix patch."
+                        <TextBlock Text="Search and add games to your collection quickly and easily."
                                    TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                     </StackPanel>
                 </Border>
@@ -67,9 +50,9 @@
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414">
                     <StackPanel>
-                        <TextBlock Text="Lua Script Generator" Foreground="White" FontWeight="SemiBold"
+                        <TextBlock Text="Network" Foreground="White" FontWeight="SemiBold"
                                    FontSize="13" Margin="0,0,0,6"/>
-                        <TextBlock Text="Fetches depot keys and manifest IDs from SteamProof to generate working Lua scripts automatically."
+                        <TextBlock Text="Enable multiplayer support for your installed titles."
                                    TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                     </StackPanel>
                 </Border>

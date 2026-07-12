@@ -14,10 +14,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
         <StackPanel Grid.Row="0" Margin="0,0,0,20">
-            <TextBlock Text="Extras" Foreground="White" FontSize="22" FontWeight="Bold"/>
-            <TextBlock Text="Useful tools and community resources"
+            <TextBlock Text="Tools" Foreground="White" FontSize="22" FontWeight="Bold"/>
+            <TextBlock Text="Companion utilities for your games"
                        Foreground="#333333" FontSize="12" Margin="0,4,0,0"/>
         </StackPanel>
 
@@ -26,9 +25,8 @@
 
                 <TextBlock TextWrapping="Wrap" Foreground="#333333" FontSize="12"
                            LineHeight="20" Margin="0,0,0,16"
-                           Text="These tools are provided for convenience. Use them responsibly and at your own risk."/>
+                           Text="Additional utilities to enhance your experience."/>
 
-                <!-- SteamCMD -->
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414"
                         Cursor="Hand" MouseDown="Steamcmd">
@@ -47,7 +45,6 @@
                     </Grid>
                 </Border>
 
-                <!-- NLGL -->
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414"
                         Cursor="Hand" MouseDown="nlgl">
@@ -57,14 +54,13 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="NLGL — Rockstar Launcher Bypass" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
-                            <TextBlock Text="Nightlight Game Launcher for Rockstar Games titles." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
+                            <TextBlock Text="NLGL — Game Launcher" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                            <TextBlock Text="Alternative launcher for Rockstar Games titles." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                         </StackPanel>
                         <TextBlock Grid.Column="1" Text="›" Foreground="#2A2A2A" FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0"/>
                     </Grid>
                 </Border>
 
-                <!-- CreamInstaller -->
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414"
                         Cursor="Hand" MouseDown="craminstaller">
@@ -74,14 +70,13 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="CreamInstaller — DLC Unlocker" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
-                            <TextBlock Text="Automatic DLC unlock installer and config generator." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
+                            <TextBlock Text="CreamInstaller" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                            <TextBlock Text="Automatic content installer and configuration manager." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                         </StackPanel>
                         <TextBlock Grid.Column="1" Text="›" Foreground="#2A2A2A" FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0"/>
                     </Grid>
                 </Border>
 
-                <!-- Online-Fix -->
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
                         Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414"
                         Cursor="Hand" MouseDown="onlinefix">
@@ -91,16 +86,15 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Online-fix.me — Multiplayer Bypass" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
-                            <TextBlock Text="Patches for playing online multiplayer games." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
+                            <TextBlock Text="Online-fix" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                            <TextBlock Text="Multiplayer support patches for various titles." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                         </StackPanel>
                         <TextBlock Grid.Column="1" Text="›" Foreground="#2A2A2A" FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0"/>
                     </Grid>
                 </Border>
 
-                <!-- Steam Achievement Manager -->
                 <Border Background="#0A0A0A" CornerRadius="10" Padding="16,14"
-                        Margin="0,0,0,6" BorderThickness="1" BorderBrush="#1A0808"
+                        Margin="0,0,0,6" BorderThickness="1" BorderBrush="#141414"
                         Cursor="Hand" MouseDown="steamachievementmanager">
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -108,12 +102,10 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBlock Text="Steam Achievement Manager" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
-                            <TextBlock Text="Manage achievements and stats. Use with caution." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
+                            <TextBlock Text="Achievement Manager" Foreground="White" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,4"/>
+                            <TextBlock Text="Manage your Steam achievements and statistics." TextWrapping="Wrap" Foreground="#444444" FontSize="12"/>
                         </StackPanel>
-                        <Border Grid.Column="1" Background="#1A0808" CornerRadius="4" Padding="6,3" VerticalAlignment="Center">
-                            <TextBlock Text="Caution" Foreground="#E01E37" FontSize="10" FontWeight="SemiBold"/>
-                        </Border>
+                        <TextBlock Grid.Column="1" Text="›" Foreground="#2A2A2A" FontSize="18" VerticalAlignment="Center" Margin="12,0,0,0"/>
                     </Grid>
                 </Border>
 
