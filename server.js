@@ -51,11 +51,17 @@ function isValidKey(key) {
   return !!(entry && entry.active);
 }
 
+function deactivateKey(key) {
+  const keys = loadKeys();
+  if (keys[key]) { keys[key].active = false; keys[key].usedAt = new Date().toISOString(); saveKeys(keys); }
+}
+
 function requireKey(req, res, next) {
   const key = req.query.key || req.headers['x-key'];
   if (!isValidKey(key)) {
     return res.status(401).json({ error: 'Invalid or missing access key.' });
   }
+  req._accessKey = key;
   next();
 }
 
@@ -202,6 +208,8 @@ app.get('/api/generate/:appId', requireKey, async (req, res) => {
       lua += `\n\n-- Manifests (updated ${ts})\n` + manifestLines.join('\n');
     }
     lua += '\n';
+    // 1 key = 1 game — deactivate after successful generation
+    deactivateKey(req._accessKey);
     res.json({ lua, appId, depotCount: depots.length });
   } catch (err) {
     res.status(500).json({ error: err.message });

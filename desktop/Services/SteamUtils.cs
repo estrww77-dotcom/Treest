@@ -252,8 +252,8 @@ namespace OpenSteam.Services
             string pluginDir = Path.Combine(steamPath, "config", Properties.Settings.Default.LuaPath);
             string depotCache = Path.Combine(steamPath, "depotcache");
 
-            if (!Directory.Exists(pluginDir))
-                throw new DirectoryNotFoundException($"No found: {pluginDir}");
+            // Create plugin dir if it doesn't exist yet
+            Directory.CreateDirectory(pluginDir);
 
             Directory.CreateDirectory(depotCache);
 

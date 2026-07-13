@@ -1,10 +1,6 @@
 using OpenSteam.Properties;
 using OpenSteam.Services;
 using OpenSteam.Models;
-using System.Diagnostics;
-using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,7 +8,6 @@ namespace OpenSteam.Views
 {
     public partial class OnlineLua : UserControl
     {
-        private static readonly HttpClient _http = new HttpClient();
         private List<Game> CachedList = new List<Game>();
 
         public OnlineLua()
@@ -34,7 +29,8 @@ namespace OpenSteam.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to load game data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Failed to load game list: {ex.Message}", "Network Error",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             finally
             {
@@ -45,31 +41,22 @@ namespace OpenSteam.Views
             }
         }
 
-        private async Task<bool> ValidateKey(string key)
-        {
-            if (string.IsNullOrWhiteSpace(key)) return false;
-            try
-            {
-                var body = new StringContent(JsonSerializer.Serialize(new { key }), Encoding.UTF8, "application/json");
-                var res = await _http.PostAsync($"{AppConfig.ServerUrl}/api/validate", body);
-                var json = await res.Content.ReadAsStringAsync();
-                using var doc = JsonDocument.Parse(json);
-                return doc.RootElement.TryGetProperty("valid", out var v) && v.GetBoolean();
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
         private async void Search_Click(object sender, RoutedEventArgs e)
         {
             string userKey = KeyBox.Text.Trim();
             string userInput = SearchBox.Text.Trim();
 
+            if (string.IsNullOrWhiteSpace(userKey))
+            {
+                MessageBox.Show("Enter your access key first.", "Access Required",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(userInput))
             {
-                MessageBox.Show("Please enter an AppID or Name first.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Enter a game name or AppID.", "Input Required",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -80,53 +67,72 @@ namespace OpenSteam.Views
 
             try
             {
-                bool keyValid = await ValidateKey(userKey);
-                if (!keyValid)
-                {
-                    MessageBox.Show("Access denied. Please enter a valid access key.", "Access Required", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
+                // Save key to settings
                 Settings.Default.LicenseKey = userKey;
                 Settings.Default.Save();
 
-                LuaLoaders luaLoaders = new LuaLoaders();
                 string steamPath = SteamUtils.GetSteamPath();
+                if (string.IsNullOrEmpty(steamPath))
+                    throw new Exception("Steam path not found. Make sure Steam is installed.");
 
-                if (Properties.Settings.Default.FilterManager)
+                string appIdStr;
+
+                if (Settings.Default.FilterManager)
                 {
                     var results = await Task.Run(() => SteamUtils.GetFilteredGames(userInput, CachedList));
 
                     if (results == null || !results.Any())
                     {
-                        MessageBox.Show("No games found with that ID or Name. You can try disabling the filter in the settings (Only works with appid)", "Not Found", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show(
+                            "Game not found. Try the exact AppID from the Steam store page.\n" +
+                            "Tip: Disable 'Filter Manager' in Settings to use AppID directly.",
+                            "Not Found", MessageBoxButton.OK, MessageBoxImage.Information);
                         return;
                     }
 
-                    Game selectedGame = results.First();
+                    // Prefer exact name match, fall back to first result
+                    Game selectedGame = results.FirstOrDefault(g =>
+                        g.name != null &&
+                        g.name.Equals(userInput, StringComparison.OrdinalIgnoreCase))
+                        ?? results.First();
 
-                    if (selectedGame.nsfw && !Properties.Settings.Default.DisableNFSWAlert)
+                    if (selectedGame.nsfw && !Settings.Default.DisableNFSWAlert)
                     {
-                        var res = MessageBox.Show("This game is marked as NSFW. Continue?", "NSFW Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                        if (res == MessageBoxResult.No) return;
+                        var r = MessageBox.Show("This game is marked as NSFW. Continue?",
+                            "NSFW Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                        if (r == MessageBoxResult.No) return;
                     }
 
                     if (selectedGame.drm)
                     {
-                        var res = MessageBox.Show("This game has DRM. It may not work. Continue?", "DRM Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                        if (res == MessageBoxResult.No) return;
+                        var r = MessageBox.Show(
+                            "This game has DRM protection — it may not work correctly. Continue anyway?",
+                            "DRM Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                        if (r == MessageBoxResult.No) return;
                     }
 
-                    await luaLoaders.OnlineLoad(selectedGame.appid, steamPath);
+                    appIdStr = selectedGame.appid;
                 }
                 else
                 {
-                    await luaLoaders.OnlineLoad(userInput, steamPath);
+                    // Direct AppID mode — must be numeric
+                    if (!int.TryParse(userInput, out _))
+                        throw new Exception("Filter Manager is disabled — enter a numeric AppID only.");
+                    appIdStr = userInput;
                 }
+
+                // Generate via server (validates key, consumes key on success)
+                LuaLoaders luaLoaders = new LuaLoaders();
+                await luaLoaders.OnlineLoad(appIdStr, steamPath);
+
+                // Clear key after use (it's been consumed — user needs a new one next time)
+                KeyBox.Clear();
+                Settings.Default.LicenseKey = string.Empty;
+                Settings.Default.Save();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

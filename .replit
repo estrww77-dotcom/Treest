@@ -53,3 +53,9 @@ externalPort = 80
 deploymentTarget = "autoscale"
 run = ["node", "server.js"]
 build = ["npm", "install"]
+
+[userenv]
+
+[userenv.shared]
+BOT_SECRET = "aa8a561d7fc6582e41f4767cd6a3391301986a0e5abffc7c393685a5133f2a6f"
+SERVER_URL = "https://80b88ce8-a7d7-4174-8260-7a0b568302f5-00-bzleilrrpo54.sisko.replit.dev"
