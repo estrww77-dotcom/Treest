@@ -285,6 +285,9 @@ FakesAssemblies/
 .ntvs_analysis.dat
 node_modules/
 
+# RedSea key store — never commit this
+keys.json
+
 # Visual Studio 6 build log
 *.plg
 

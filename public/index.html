@@ -366,6 +366,17 @@
     <div class="section-title small-mb">Search &amp; add games to your library</div>
     <p style="color:var(--text-muted);font-size:.85rem;margin-bottom:24px;">Enter a game name or Steam AppID. Click any game to add it to your library instantly.</p>
 
+    <!-- Key input -->
+    <div class="store-bar" style="margin-bottom:10px;">
+      <input id="key-input" class="store-input" type="text"
+        placeholder="Access key (RS-XXXX-XXXX-XXXX)" autocomplete="off" spellcheck="false"/>
+      <button class="store-btn" onclick="saveKey()" title="Save key">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Save Key
+      </button>
+    </div>
+    <div id="key-status" style="font-size:.75rem;margin-bottom:18px;min-height:14px;"></div>
+
     <div class="store-bar">
       <input id="search-input" class="store-input" type="text"
         placeholder="Game name or AppID (e.g. 730, Counter-Strike)" autocomplete="off" />
@@ -516,12 +527,38 @@
   let currentLua = '';
   let currentAppId = '';
 
+  // ── Key system
+  function saveKey() {
+    const key = document.getElementById('key-input').value.trim();
+    if (!key) { showKeyStatus('Enter a key first.', '#e05050'); return; }
+    localStorage.setItem('rs_key', key);
+    showKeyStatus('✓ Key saved', '#22c55e');
+  }
+
+  function showKeyStatus(msg, color) {
+    const el = document.getElementById('key-status');
+    el.textContent = msg;
+    el.style.color = color || 'var(--text-muted)';
+  }
+
+  function getSavedKey() {
+    return localStorage.getItem('rs_key') || '';
+  }
+
   // ── Init
   document.addEventListener('DOMContentLoaded', () => {
     loadInitialGames();
     loadNews();
+    const saved = getSavedKey();
+    if (saved) {
+      document.getElementById('key-input').value = saved;
+      showKeyStatus('✓ Key loaded', '#22c55e');
+    }
     document.getElementById('search-input').addEventListener('keydown', e => {
       if (e.key === 'Enter') searchGames();
+    });
+    document.getElementById('key-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') saveKey();
     });
   });
 
@@ -609,11 +646,23 @@
 
   async function generateLua(appId, name) {
     try {
-      const r = await fetch('/api/generate/' + appId);
+      const key = getSavedKey();
+      if (!key) {
+        document.getElementById('modal-body').innerHTML =
+          '<div class="modal-generating"><p style="color:#e05050">Access key required. Enter your key in the Game Hub section.</p></div>';
+        return;
+      }
+      const r = await fetch('/api/generate/' + appId + '?key=' + encodeURIComponent(key));
       const data = await r.json();
+      if (r.status === 401) {
+        document.getElementById('modal-body').innerHTML =
+          '<div class="modal-generating"><p style="color:#e05050">Invalid access key. Please check your key and try again.</p></div>';
+        showKeyStatus('✗ Key rejected', '#e05050');
+        return;
+      }
       if (!r.ok || data.error) {
         document.getElementById('modal-body').innerHTML =
-          `<div class="modal-generating"><p style="color:#e05050">${escHtml(data.error || 'Failed to generate Lua.')}</p></div>`;
+          `<div class="modal-generating"><p style="color:#e05050">${escHtml(data.error || 'Failed to generate.')}</p></div>`;
         return;
       }
       currentLua = data.lua;

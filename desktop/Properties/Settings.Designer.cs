@@ -118,5 +118,17 @@ namespace OpenSteam.Properties {
                 this["LuaPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LicenseKey {
+            get {
+                return ((string)(this["LicenseKey"]));
+            }
+            set {
+                this["LicenseKey"] = value;
+            }
+        }
     }
 }

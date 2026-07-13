@@ -2,6 +2,9 @@ using OpenSteam.Properties;
 using OpenSteam.Services;
 using OpenSteam.Models;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,13 +12,14 @@ namespace OpenSteam.Views
 {
     public partial class OnlineLua : UserControl
     {
+        private static readonly HttpClient _http = new HttpClient();
+        private List<Game> CachedList = new List<Game>();
+
         public OnlineLua()
         {
             InitializeComponent();
             LoadData();
         }
-
-        private List<Game> CachedList = new List<Game>();
 
         private async void LoadData()
         {
@@ -41,12 +45,27 @@ namespace OpenSteam.Views
             }
         }
 
+        private async Task<bool> ValidateKey(string key)
+        {
+            if (string.IsNullOrWhiteSpace(key)) return false;
+            try
+            {
+                var body = new StringContent(JsonSerializer.Serialize(new { key }), Encoding.UTF8, "application/json");
+                var res = await _http.PostAsync($"{AppConfig.ServerUrl}/api/validate", body);
+                var json = await res.Content.ReadAsStringAsync();
+                using var doc = JsonDocument.Parse(json);
+                return doc.RootElement.TryGetProperty("valid", out var v) && v.GetBoolean();
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private async void Search_Click(object sender, RoutedEventArgs e)
         {
-
-            LuaLoaders luaLoaders = new LuaLoaders();
-            string steamPath = SteamUtils.GetSteamPath();
-            string userInput = SearchBox.Text;
+            string userKey = KeyBox.Text.Trim();
+            string userInput = SearchBox.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(userInput))
             {
@@ -61,6 +80,19 @@ namespace OpenSteam.Views
 
             try
             {
+                bool keyValid = await ValidateKey(userKey);
+                if (!keyValid)
+                {
+                    MessageBox.Show("Access denied. Please enter a valid access key.", "Access Required", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                Settings.Default.LicenseKey = userKey;
+                Settings.Default.Save();
+
+                LuaLoaders luaLoaders = new LuaLoaders();
+                string steamPath = SteamUtils.GetSteamPath();
+
                 if (Properties.Settings.Default.FilterManager)
                 {
                     var results = await Task.Run(() => SteamUtils.GetFilteredGames(userInput, CachedList));
@@ -75,15 +107,13 @@ namespace OpenSteam.Views
 
                     if (selectedGame.nsfw && !Properties.Settings.Default.DisableNFSWAlert)
                     {
-                        var res = MessageBox.Show("This game is marked as NSFW. Continue?", "NSFW Warning",
-                                                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                        var res = MessageBox.Show("This game is marked as NSFW. Continue?", "NSFW Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                         if (res == MessageBoxResult.No) return;
                     }
 
                     if (selectedGame.drm)
                     {
-                        var res = MessageBox.Show("This game has DRM. It may not work. Continue?", "DRM Warning",
-                                                 MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                        var res = MessageBox.Show("This game has DRM. It may not work. Continue?", "DRM Warning", MessageBoxButton.YesNo, MessageBoxImage.Warning);
                         if (res == MessageBoxResult.No) return;
                     }
 
@@ -93,7 +123,6 @@ namespace OpenSteam.Views
                 {
                     await luaLoaders.OnlineLoad(userInput, steamPath);
                 }
-                
             }
             catch (Exception ex)
             {
@@ -107,6 +136,5 @@ namespace OpenSteam.Views
                 ButtonProgress.Visibility = Visibility.Collapsed;
             }
         }
-
     }
 }

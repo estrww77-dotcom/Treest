@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:p="clr-namespace:OpenSteam.Properties"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="600"
              TextOptions.TextFormattingMode="Display"
@@ -58,6 +59,41 @@
             <Border Background="#0A0A0A" CornerRadius="12" Padding="20"
                     BorderThickness="1" BorderBrush="#141414">
                 <StackPanel>
+
+                    <!-- Access Key -->
+                    <TextBlock Text="Access Key" Foreground="#444444"
+                               FontSize="11" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <Grid Margin="0,0,0,16">
+                        <Border CornerRadius="8" BorderThickness="1" BorderBrush="#1A1A1A">
+                            <Border.Background><SolidColorBrush Color="#0D0D0D"/></Border.Background>
+                        </Border>
+                        <TextBox x:Name="KeyBox"
+                                 Background="Transparent" Foreground="White"
+                                 FontSize="13" Padding="14,12" BorderThickness="0"
+                                 SelectionBrush="#E01E37" CaretBrush="White"
+                                 VerticalAlignment="Center"
+                                 Text="{Binding Source={x:Static p:Settings.Default}, Path=LicenseKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}"><Setter Property="CornerRadius" Value="8"/></Style>
+                            </TextBox.Resources>
+                        </TextBox>
+                        <TextBlock IsHitTestVisible="False"
+                                   Text="RS-XXXX-XXXX-XXXX"
+                                   VerticalAlignment="Center" Margin="15,0,0,0"
+                                   Foreground="#2A2A2A" FontSize="13">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Text, ElementName=KeyBox}" Value="">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+
                     <TextBlock Text="Game ID or Name" Foreground="#444444"
                                FontSize="11" FontWeight="SemiBold" Margin="0,0,0,8"/>
 
